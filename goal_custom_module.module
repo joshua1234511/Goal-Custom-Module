@@ -34,7 +34,7 @@ function goal_custom_module_menu()
     $items['goal_custom_module/formall'] = array(
         'title'            => 'All Form',
         'page callback'    => 'goal_custom_module_form_all',
-        'access arguments' => array( 'access content' ),
+        'access arguments' => array( 'goal custom module' ),
         'file' => 'goal_custom_module.pages.inc',
     );
 
@@ -81,4 +81,15 @@ function goal_custom_module_block_view($delta = '') {
     }
     return $block;
 }
-  
+
+/**
+ * Implements hook_permission().
+ */
+function goal_custom_module_permission() {
+  return array(
+    'goal custom module' => array(
+      'title' => t('Administer permission for Custom module'),
+      'description' => t('To set administer permission for Custom module'),
+    ),
+  );
+}
