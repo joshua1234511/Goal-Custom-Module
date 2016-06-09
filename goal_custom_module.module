@@ -9,10 +9,6 @@
  *
  * Displays help and module information.
  *
- * @param path 
- *   Which path of the site we're using to display help
- * @param arg 
- *   Array that holds the current path as returned from arg() function
  */
 function goal_custom_module_help($path, $arg) {
   switch ($path) {
@@ -22,21 +18,19 @@ function goal_custom_module_help($path, $arg) {
   }
 } 
 
-function goal_custom_module_menu()
-{
-    
-    $items['goal_custom_module/form'] = array(
-        'title' => t('Form'),
-        'page callback' => 'goal_custom_module_form_input',
-        'access arguments' => array('access content'),
-        'file' => 'goal_custom_module.pages.inc',
-    );
-    $items['goal_custom_module/formall'] = array(
-        'title'            => 'All Form',
-        'page callback'    => 'goal_custom_module_form_all',
-        'access arguments' => array( 'goal custom module' ),
-        'file' => 'goal_custom_module.pages.inc',
-    );
+function goal_custom_module_menu() { 
+  $items['goal_custom_module/form'] = array(
+    'title' => 'Form',
+    'page callback' => 'goal_custom_module_form_input',
+    'access arguments' => array('access content'),
+    'file' => 'goal_custom_module.pages.inc',
+  );
+  $items['goal_custom_module/formall'] = array(
+    'title'            => 'All Form',
+    'page callback'    => 'goal_custom_module_form_all',
+    'access arguments' => array('goal custom module'),
+    'file' => 'goal_custom_module.pages.inc',
+  );
 
     return $items;
 }
@@ -53,8 +47,7 @@ function goal_custom_module_block_info() {
 }
 
 /**
- * Custom content function. 
- * 
+ * Custom content function.
  * Set beginning and end dates, retrieve posts from database
  * saved in that time period.
  * 
@@ -63,20 +56,19 @@ function goal_custom_module_block_info() {
  */
 function goal_custom_module_contents(){
   module_load_include('inc', 'goal_custom_module', 'goal_custom_module.pages');
-  return goal_custom_module_form_input();  
+  return goal_custom_module_form_input();
 }
 
 /**
  * Implements hook_block_view().
- * 
  * Prepares the contents of the block.
  */
 function goal_custom_module_block_view($delta = '') {
     $block = array();
     switch ($delta) {
-      case 'goal_custom_module':
-        $block['subject'] = '';
-        $block['content'] = goal_custom_module_contents();
+    case 'goal_custom_module':
+      $block['subject'] = '';
+      $block['content'] = goal_custom_module_contents();
         break;
     }
     return $block;

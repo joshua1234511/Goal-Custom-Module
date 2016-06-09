@@ -2,13 +2,14 @@
 
 /**
  * @file
- * goal_custom_module module installation
+ * The goal_custom_module module installation.
  */
 
-
+/**
+* Use schema API to create database table.
+*/
 function goal_custom_module_install() {
-// Use schema API to create database table.
-drupal_install_schema('goalcustommodule');
+ drupal_install_schema('goalcustommodule');
 }
 
 
